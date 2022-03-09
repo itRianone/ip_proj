@@ -155,7 +155,7 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 function redirect(){
-    window.location.href = 'http://localhost:5501/index.html';
+    window.location.href = 'https://itrianone.github.io/ip_proj/';
 
 }
 
