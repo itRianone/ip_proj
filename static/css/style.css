@@ -1,0 +1,33 @@
+body{
+  background-color: black;
+  color: white;
+  height: 100vh;
+}
+.head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quiz_page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+h1{
+  font-size: 25px;
+}
+.question{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+}
+.res{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

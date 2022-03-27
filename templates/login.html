@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block content %}
+
+<form method="POST">
+
+
+  <input type="text" placeholder="name" name="login_name">
+  <input type="text" placeholder="password" name="login_passw">
+    {% if error %}
+    {{error}}
+    {% endif %}
+  <button>login</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<div class="question">
+  
+  <form method="POST" name="form" class="form form-control">
+    <div class="question_">
+      {{ quest }}
+    </div>
+    <div class="options">
+      {% for item in opts %}
+      <input type="radio" id="{{item}}" name="option" value="{{item}}">
+      <label for="{{item}}">{{item}}</label>
+    </div>
+    <div>
+      {% endfor %}</div>
+    {% if error %}
+    <ul>
+      <li>{{ error }}</li>
+    </ul>
+    {% endif %}
+    <button type="submit">Следующий вопрос</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

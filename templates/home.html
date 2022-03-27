@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<div class="head">
+  <div class="logo">
+    <img style="height: 50px;width: 50px;" src="../static/img/Myb5MkGpB9M.jpg" alt="logo" class="logo_img">
+  </div>
+  <div class="user_or_log">
+    {% if username %}
+    <h2>Это ты ахах -> {{ username }}</h2>
+    <a href="/logout">
+      <div class="registration">logout</div>
+    </a>
+    
+    {% else %}
+    <a href="/login">
+      <div class="login">login</div>
+    </a>
+    <a href="/registration">
+      <div class="registration">registration</div>
+    </a>
+    {% endif %}
+  </div>
+
+</div>
+<div class="quizes">
+  <div class="quiz1">
+    <div class="">ДРЕВНЯЯ РОССИЯ 1</div>
+    <a href="/rusb">start quiz</a>
+  </div>
+  <div class="quiz2">
+    <div class="">ДРЕВНЯЯ РОССИЯ 2</div>
+    <a href="/rusb_sec">start quiz</a>
+  </div>
+</div>
+{% endblock %}

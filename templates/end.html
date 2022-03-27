@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="res">
+  
+  <h1>Правильных {{correct_answers_count}}/{{quest_amount}}</h1> 
+  {% for answer in answers %}
+
+    {% if answer['is_correct'] == True %}
+      <div class="green" style="color: green;">{{answer['answer']}}</div>
+    {% else %}
+      <div class="red" style="color: red;">{{answer['answer']}}</div>
+    {% endif %}
+  
+  {% endfor %}
+</div>
+{% endblock %}
