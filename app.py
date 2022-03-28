@@ -17,10 +17,12 @@ def main():
     user_name = session['username']
     username = User.query.filter_by(username=str(session['username'])).one()
     pic=username.profile_picture
+    return render_template('home.html', username=user_name, pic=pic)
   except:
     username = None
+    return render_template('home.html', username=username)
+
   #print(username)
-  return render_template('home.html', username=user_name, pic=pic)
 
 @app.route('/<quiz_type>/<quizname>')
 def quiz_page(quiz_type, quizname):
@@ -203,21 +205,22 @@ def allowed_file(filename):
 
 @app.route('/lk', methods=['GET', 'POST'])
 def profile():
-  print(session['username'])
-  username = User.query.filter_by(username=str(session['username'])).one()
-  if request.method == 'POST':
-    print('ea')
-    file = request.files['pic']
-    print('ok')
-    if file and allowed_file(file.filename):
+  user = session['username']
+  if user:
+    username = User.query.filter_by(username=str(session['username'])).one()
+    if request.method == 'POST':
+      print('ea')
+      file = request.files['pic']
+      print('ok')
+      if file and allowed_file(file.filename):
 
-      #image_name = secure_filename(file.filename) ????
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-      username.profile_picture = file.filename
-      db.session.commit()
-      return render_template('lk.html', pic=username.profile_picture)#
-  return render_template('lk.html', pic=username.profile_picture)
-
+        #image_name = secure_filename(file.filename) ????
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+        username.profile_picture = file.filename
+        db.session.commit()
+        return render_template('lk.html', pic=username.profile_picture)#
+    return render_template('lk.html', pic=username.profile_picture)
+  return redirect(url_for('registration'))
 # @app.errorhandler(500)
 @app.route('/registration', methods=['POST', 'GET']) 
 def registration():
