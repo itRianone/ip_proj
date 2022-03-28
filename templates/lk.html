@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+
+user data here
+you {{username}}
+<img src="../static/img/{{pic}}" style="height:100px;width:100px;border-radius:50%;">
+<form method='POST' action="" enctype="multipart/form-data">
+  <input type="file" class="qwrqwr" name="pic">
+  <button>update pic</button> 
+  
+</form>
+{% endblock %}

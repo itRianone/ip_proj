@@ -1,8 +1,9 @@
-from config import app, db
-from data import quizes, descriptions,victs
+from config import app, db,UPLOAD_FOLDER, ALLOWED_EXTENSIONS
+from data import quizes,victs
 from flask import Flask, render_template, request, redirect, url_for, flash, session, make_response
 from models import User
 from sqlalchemy.exc import IntegrityError as sql_error
+import os
 
 db.create_all()
 
@@ -13,25 +14,27 @@ db.create_all()
 def main():
   # username = request.cookies.get('username')
   try:
-    username = session['username']
+    user_name = session['username']
+    username = User.query.filter_by(username=str(session['username'])).one()
+    pic=username.profile_picture
   except:
     username = None
   #print(username)
-  return render_template('home.html', username=username)
+  return render_template('home.html', username=user_name, pic=pic)
 
 @app.route('/<quiz_type>/<quizname>')
 def quiz_page(quiz_type, quizname):
   print(quiz_type, quizname)
   try:
-    description = descriptions[quizname]
+    description = description[quizname]
   except:
     description=''
   return render_template('quiz_page.html', quiz_type=quiz_type, description=description, quizname=quizname)
 
 
-@app.errorhandler(Exception)
-def err(e):
-  return render_template('err.html', error=e)
+# @app.errorhandler(Exception)
+# def err(e):
+#   return render_template('err.html', error=e)
 
 def nearest(lst, target):
   return min(lst, key=lambda x: abs(x-target))
@@ -194,6 +197,27 @@ def login():
 
   return render_template('login.html')      
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/lk', methods=['GET', 'POST'])
+def profile():
+  print(session['username'])
+  username = User.query.filter_by(username=str(session['username'])).one()
+  if request.method == 'POST':
+    print('ea')
+    file = request.files['pic']
+    print('ok')
+    if file and allowed_file(file.filename):
+
+      #image_name = secure_filename(file.filename) ????
+      file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+      username.profile_picture = file.filename
+      db.session.commit()
+      return render_template('lk.html', pic=username.profile_picture)#
+  return render_template('lk.html', pic=username.profile_picture)
+
 # @app.errorhandler(500)
 @app.route('/registration', methods=['POST', 'GET']) 
 def registration():
@@ -209,7 +233,7 @@ def registration():
       return render_template('registration.html', error=error)
 
     try:
-      user = User(username=username, password=password)
+      user = User(username=username, password=password,profile_picture='no')
       db.session.add(user)
       db.session.commit()
 

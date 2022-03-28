@@ -2,43 +2,67 @@
 {% block content %}
 
 
-<div class="head">
-  <div class="logo">
-    <img style="height: 50px;width: 50px;" src="../static/img/Myb5MkGpB9M.jpg" alt="logo" class="logo_img">
+<div class="wrapper">
+  <div class="head">
+    <div class="logo">
+      <a href="/"><img src="../static/img/logo.png" alt="logo" class="logo_img">
+      </a>
+    </div>
+    <div class="user_or_log">
+      {% if username %}
+      <div class="lk" style="text-align: center;">
+        <a href="/lk" style="color: white;">Личный кабинет</a>
+        <a class="registration" href="/logout">
+          <div>Выйти</div>
+        </a>
+      </div>
+      <div class="user" style="text-align: center;">
+        <img class="user_ava" src="../static/img/{{pic}}" style="height:100px;width:100px;border-radius:50%;" alt="user_ava">
+        <div class="username">{{ username }}</div>
+      </div>
+      {% else %}
+      <div class="log_and_reg">
+        <a class="registration" href="/registration">
+          <div>Регистрация</div>
+        </a>
+        <a class="login" href="/login">
+          <div>Вход</div>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  
   </div>
-  <div class="user_or_log">
-    {% if username %}
-    <h2>Это ты ахах -> {{ username }}</h2>
-    <a href="/logout">
-      <div class="registration">logout</div>
-    </a>
-    
-    {% else %}
-    <a href="/login">
-      <div class="login">login</div>
-    </a>
-    <a href="/registration">
-      <div class="registration">registration</div>
-    </a>
-    {% endif %}
+  <div class="main">
+    <div class="quiz1 quiz">
+      <div class="quiz_text">Древняя Россия</div>
+      <button class="start_btn">
+        <a href="/test/rusb">НАЧАТЬ ТЕСТ</a>
+        <div class="num">#1</div>
+      </button>
+    </div>
+    <div class="quiz2 quiz">
+      <div class="quiz_text">Древняя Россия</div>
+      <button class="start_btn">
+        <a href="/test/rusb_sec">НАЧАТЬ ТЕСТ</a>
+        <div class="num">#2</div>
+      </button>
+    </div>
+    <div class="victorin1 quiz">
+      <div class="quiz_text">КТО ТЫ ИЗ 3 РУССКИХ ???</div>
+      <button class="start_btn">
+        <a href="/victorin/russian_high_tier_politics7aha">НАЧАТЬ ВИКТОРИНУ</a>
+  
+      </button>
+  
+    </div>
   </div>
-
-</div>
-<div class="quizes">
-  <div class="quiz1">
-    <div class="">ДРЕВНЯЯ РОССИЯ 1</div>
-    <a href="/test/rusb">start quiz</a>
+  <div class="footer">
+    <div class="url">
+      <a class="url_link" href="https://vk.com/historyprojectz">
+        https://vk.com/historyprojectz
+      </a>
+    </div>
   </div>
-  <div class="quiz2">
-    <div class="">ДРЕВНЯЯ РОССИЯ 2</div>
-    <a href="/test/rusb_sec">start quiz</a>
-  </div>
-</div>
-<div class="victorins">
-  <div class="victorin1">
-    <div class="">КТО ТЫ ИЗ 3 РУССКИХ ???</div>
-    <a href="/victorin/russian_high_tier_politics7aha">start quiz</a>
-  </div>
-
 </div>
 {% endblock %}
