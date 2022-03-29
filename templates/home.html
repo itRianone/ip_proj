@@ -2,67 +2,30 @@
 {% block content %}
 
 
-<div class="wrapper">
-  <div class="head">
-    <div class="logo">
-      <a href="/"><img src="../static/img/logo.png" alt="logo" class="logo_img">
-      </a>
-    </div>
-    <div class="user_or_log">
-      {% if username %}
-      <div class="lk" style="text-align: center;">
-        <a href="/lk" style="color: white;">Личный кабинет</a>
-        <a class="registration" href="/logout">
-          <div>Выйти</div>
-        </a>
-      </div>
-      <div class="user" style="text-align: center;">
-        <img class="user_ava" src="../static/img/{{pic}}" style="height:100px;width:100px;border-radius:50%;" alt="user_ava">
-        <div class="username">{{ username }}</div>
-      </div>
-      {% else %}
-      <div class="log_and_reg">
-        <a class="registration" href="/registration">
-          <div>Регистрация</div>
-        </a>
-        <a class="login" href="/login">
-          <div>Вход</div>
-        </a>
-      </div>
-      {% endif %}
-    </div>
-  
-  </div>
+
   <div class="main">
     <div class="quiz1 quiz">
       <div class="quiz_text">Древняя Россия</div>
-      <button class="start_btn">
-        <a href="/test/rusb">НАЧАТЬ ТЕСТ</a>
+      <a href="/test/rusb/1"><button class="start_btn">
+         НАЧАТЬ ТЕСТ
         <div class="num">#1</div>
-      </button>
+      </button></a>
     </div>
     <div class="quiz2 quiz">
       <div class="quiz_text">Древняя Россия</div>
-      <button class="start_btn">
-        <a href="/test/rusb_sec">НАЧАТЬ ТЕСТ</a>
+      <a href="/test/rusb_sec/1"><button class="start_btn">
+        НАЧАТЬ ТЕСТ
         <div class="num">#2</div>
-      </button>
+      </button></a>
     </div>
     <div class="victorin1 quiz">
       <div class="quiz_text">КТО ТЫ ИЗ 3 РУССКИХ ???</div>
-      <button class="start_btn">
-        <a href="/victorin/russian_high_tier_politics7aha">НАЧАТЬ ВИКТОРИНУ</a>
+      <a href="/victorin/russian_high_tier_politics7aha/1"><button class="start_btn">
+        НАЧАТЬ ВИКТОРИНУ
   
-      </button>
+      </button></a>
   
     </div>
   </div>
-  <div class="footer">
-    <div class="url">
-      <a class="url_link" href="https://vk.com/historyprojectz">
-        https://vk.com/historyprojectz
-      </a>
-    </div>
-  </div>
-</div>
+
 {% endblock %}

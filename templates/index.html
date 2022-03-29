@@ -4,13 +4,57 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ip</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <title>LEGIMP</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="../static/img/favicon.ico">
+  <link rel="icon"  href="{{ url_for('static', filename='img/favicon.ico') }}">
 
 </head>
 <body>
+<div class="wrapper">
+  <div class="head">
+    <div class="logo">
+      <a href="/"><img src="/static/img/logo.png" alt="logo" class="logo_img">
+      </a>
+    </div>
+    <div class="user_or_log">
+      {% if session['username'] %}
+      <div class="lk" style="text-align: center;">
+        <a href="/lk" style="color: white;">Личный кабинет</a>
+        <a class="registration" href="/logout">
+          <div>Выйти</div>
+        </a>
+      </div>
+      <div class="user" style="text-align: center;">
+         {% if session['prof_pic'] %}
+        <a href="/lk"><img class="user_ava" src="/static/img/{{session['prof_pic']}}" style="height:100px;width:100px;border-radius:50%;"
+          alt="user_ava"></a>
+        {% else %}
+        <a href="/lk"><img class="user_ava" src="/static/img/default_pic.jpg" style="height:100px;width:100px;border-radius:50%;"
+          alt="user_ava"></a>
+        {% endif %}
+      </div>
+      {% else %}
+      <div class="log_and_reg">
+        <a class="registration" href="/registration">
+          <div>Регистрация</div>
+        </a>
+        <a class="login" href="/login">
+          <div>Вход</div>
+        </a>
+      </div>
+      {% endif %}
+    </div>
 
+  </div>
   {% block content %}{% endblock %}
+  <div class="footer">
+    <div class="url">
+      <a class="url_link" target="blank_" href="https://vk.com/historyprojectz">
+        https://vk.com/historyprojectz
+      </a>
+    </div>
+  </div>
 </body>
 </html>

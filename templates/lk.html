@@ -1,12 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
 
-user data here
-you {{username}}
-<img src="../static/img/{{pic}}" style="height:100px;width:100px;border-radius:50%;">
-<form method='POST' action="" enctype="multipart/form-data">
-  <input type="file" class="qwrqwr" name="pic">
-  <button>update pic</button> 
+<div class="lk_data" style="display: flex;flex: 1 0 auto;flex-direction: column;justify-content: center;align-items: center;" style="flex: 1 0 auto;">
+  user data here
+  you {{session['username']}}
+  <img src="../static/img/{{pic}}" style="height:100px;width:100px;border-radius:50%;">
+  <form method='POST' action="" enctype="multipart/form-data">
+    <input type="file" class="qwrqwr" name="pic">
+    <button>update pic</button>
   
-</form>
+  </form>
+</div>
 {% endblock %}

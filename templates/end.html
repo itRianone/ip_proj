@@ -6,14 +6,11 @@
   {% for answer in answers %}
 
     {% if answer['is_correct'] == True %}
-      <div class="green" style="color: green;">{{answer['answer']}}</div>
+      <div class="green" style="color: rgb(0, 250, 12);">{{answer['answer']}}</div>
     {% else %}
       <div class="red" style="color: red;">{{answer['answer']}}</div>
     {% endif %}
   
   {% endfor %}
-  <a href="/" class="to_main">
-    На главную
-  </a>
 </div>
 {% endblock %}
