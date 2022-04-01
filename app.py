@@ -18,6 +18,7 @@ def main():
     pic = username.profile_picture
     return render_template('home.html', pic=pic)
   except:
+    session['username'] = None
     username = None
     return render_template('home.html')
 
@@ -182,7 +183,12 @@ def logout():
 # @app.errorhandler(500)
 @app.route('/login', methods=['POST', 'GET']) 
 def login():
-  if not session['username']:
+  try:
+    user = session['username']
+  except KeyError:
+    session['username'] = None
+    return redirect(url_for('login'))
+  if not user:
     if request.method == 'POST':
       data = request.form
       username = data['login_name']
@@ -210,13 +216,15 @@ def allowed_file(filename):
 
 @app.route('/lk', methods=['GET', 'POST'])
 def profile():
-  user = session['username']
+  try:
+    user = session['username']
+  except KeyError:
+    session['username'] = None
+    return redirect(url_for('registration'))
   if user:
     username = User.query.filter_by(username=str(session['username'])).one()
     if request.method == 'POST':
-      print('ea')
       file = request.files['pic']
-      print('ok')
       if file and allowed_file(file.filename):
 
         #image_name = secure_filename(file.filename) ????
@@ -231,7 +239,12 @@ def profile():
 # @app.errorhandler(500)
 @app.route('/registration', methods=['POST', 'GET']) 
 def registration():
-  if not session['username']:
+  try:
+    user = session['username']
+  except KeyError:
+    session['username'] = None
+    return redirect(url_for('registration'))
+  if not user:
     if request.method == 'POST':
       data = request.form
       username = data['reg_name']
