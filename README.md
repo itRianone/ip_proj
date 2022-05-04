@@ -3,8 +3,6 @@
 
 My project for Individual Project exam
 
-http://legimp.glitch.me/
-
 It is historical quiz in flask, python
 
 ![leg)](https://user-images.githubusercontent.com/63122696/166702600-6cc81aab-89ef-444f-bfb5-82a0a1f02954.gif)
