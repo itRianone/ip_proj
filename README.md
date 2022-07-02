@@ -1,4 +1,4 @@
-# ip_proj
+# IP PROJECT
 <h1><a href='http://legimp.glitch.me/'>LEGIMP</a></h1>
 
 My project for Individual Project exam
